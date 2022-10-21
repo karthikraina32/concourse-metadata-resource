@@ -1,7 +1,7 @@
 # concourse-metadata-resource
 This resource outputs [Concourse-ci](https://concourse-ci.org/) [build metadata](https://concourse-ci.org/implementing-resource-types.html#resource-metadata)
 to files to make annotations easier.  
-How it is better from other resources, because this metadata resource has the info of how have triggered the build
+How it is better from other resources, because this metadata resource has the info of who have triggered the build
 
 ### `check`: Not used
 Always emits an empty version.
