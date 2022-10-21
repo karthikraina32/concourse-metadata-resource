@@ -8,7 +8,7 @@ echo $BUILD_PIPELINE_NAME > build_pipeline_name
 echo $BUILD_TEAM_NAME > build_team_name
 echo $ATC_EXTERNAL_URL > atc_external_url
 
-metadata="$(cat <&0)"
+metadata="$(cat <&0)" # passing version from put step as stdin
 build_created_by=$(jq -r '.version .build_created_by // ""' <<< "$metadata")
 echo $build_created_by > build_created_by
 cat <<EOF

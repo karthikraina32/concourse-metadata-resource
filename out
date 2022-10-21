@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#passing BUIL_CREATED_BY as version
 cat <<EOF
 {
   "version":  { "build_created_by": "$BUILD_CREATED_BY" }
