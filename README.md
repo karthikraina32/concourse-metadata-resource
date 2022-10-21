@@ -29,8 +29,6 @@ resources:
     type: metadata
     expose_build_created_by: true # this flag is needed to be enabled 
 
-  # GitHub release resource
-  # Check https://github.com/concourse/github-release-resource#source-configuration for more info
   - name: git-resource
     type: git
     icon: github
@@ -67,7 +65,7 @@ jobs:
                 job=$(cat metadata/build_job_name)
                 build=$(cat metadata/build_name)
                 build_created_by=$(cat metadata/build_created_by)
-                
+
                 # curl to send slack notification
                 curl -X POST -H 'Content-type: application/json' --data '{"attachments":[{  "color":"#72C600", "fields":[{ "title":"Success", "value":"latest version of app has been deployed in by '$build_created_by'", "short":false }  ]}  ]}' ${webhook}
 ```
