@@ -1,0 +1,28 @@
+#!/bin/bash
+
+cd $1
+echo $BUILD_ID > build_id
+echo $BUILD_NAME > build_name
+echo $BUILD_JOB_NAME > build_job_name
+echo $BUILD_PIPELINE_NAME > build_pipeline_name
+echo $BUILD_TEAM_NAME > build_team_name
+echo $ATC_EXTERNAL_URL > atc_external_url
+
+metadata="$(cat <&0)"
+build_created_by=$(jq -r '.version .build_created_by // ""' <<< "$metadata")
+echo $build_created_by > build_created_by
+cat <<EOF
+{
+  "metadata": [
+    { "name": "BUILD_ID", "value": "$BUILD_ID"},
+    { "name": "BUILD_NAME", "value": "$BUILD_NAME"},
+    { "name": "BUILD_JOB_NAME", "value": "$BUILD_JOB_NAME"},
+    { "name": "BUILD_PIPELINE_NAME", "value": "$BUILD_PIPELINE_NAME"},
+    { "name": "BUILD_TEAM_NAME", "value": "$BUILD_TEAM_NAME"},
+    { "name": "ATC_EXTERNAL_URL", "value": "$ATC_EXTERNAL_URL"},
+    { "name": "BUILD_CREATED_BY", "value": "$build_created_by"}
+   
+  ]
+}
+EOF
+
